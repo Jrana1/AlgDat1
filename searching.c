@@ -20,7 +20,6 @@ int binary_search(float *a, int sz, float key)
             hi = mid - 1;
         }
     }
-    printf("in f -> %d\n", lo);
     return -1;
 }
 void mySwap(float *x, float *y)
@@ -37,20 +36,34 @@ int linear_search(float *a, int size, float key)
     for (int k = 0; k < size; k++)
     {
         if (a[k] == key)
-        {
-            // mySwap(&a[k], &a[0]); // Move to front/head--> rapid improvement
-            mySwap(&a[k], &a[k - 1]); // Move to 1 step forward --> slow improvement
+        { // how to improve Linear Search?
+            // mySwap(&a[k], &a[0]); //  1.Move to front/head--> rapid improvement
+            mySwap(&a[k], &a[k - 1]); // 2. Transposition-->Move to 1 step forward --> slow improvement
             return k;
         }
     }
+}
+int linear_search_recursive(float *a, int start, int end, float key)
+{
+
+    if (a[start] == key)
+    {
+        mySwap(&a[start], &a[0]);
+        return start;
+    }
+    if (start == end)
+    {
+        return -1;
+    }
+    return linear_search_recursive(a, start + 1, end, key);
 }
 int main()
 {
     float a[] = {1.5, 1.7, 2.3, 2.6, 3.3, 3.5};
     int size = sizeof(a) / sizeof(a[0]);
     // int ans = binary_search(a, size, 1.8);
-    int index = linear_search(a, size, 3.3);
+    int index = linear_search_recursive(a, 0, size, 1.6);
     printf("%d\n", index);
-    printf("%d\n", linear_search(a, size, 3.3));
+    printf("%d\n", linear_search_recursive(a, 0, size, 1.6));
     return 0;
 }
