@@ -78,13 +78,48 @@ int binary_search_recursive(float *a, int lo, int hi, float key)
         binary_search_recursive(a, lo, mid - 1, key);
     }
 }
+
+// Ternary Search
+
+int ternary_search(float *a, int lo, int hi, float key)
+{
+
+    while (hi - lo >= 0)
+    {
+        int mid1 = lo + (hi - lo) / 3;
+        int mid2 = hi - (hi - lo) / 3;
+        if (a[mid1] == key)
+        {
+            return mid1;
+        }
+        if (a[mid2] == key)
+        {
+            return mid2;
+        }
+        else if (key > a[mid2])
+        {
+            lo = mid2 + 1;
+        }
+        else if (key < a[mid1])
+        {
+            hi = mid1 - 1;
+        }
+        else
+        {
+            lo = mid1 + 1;
+            hi = mid2 - 1;
+        }
+    }
+    return -1;
+}
 int main()
 {
     float a[] = {1.5, 1.7, 2.3, 2.6, 3.3, 3.5};
     int size = sizeof(a) / sizeof(a[0]);
     // int ans = binary_search(a, size, 1.8);
-    int index = binary_search_recursive(a, 0, size, 1.7);
-    printf("%d\n", index);
-    printf("%d\n", binary_search_recursive(a, 0, size, 1.6));
+    // int index = binary_search_recursive(a, 0, size, 1.7);
+    // printf("%d\n", index);
+    // printf("%d\n", binary_search_recursive(a, 0, size, 1.6));
+    printf("%f found at %d index\n", 3.5, ternary_search(a, 0, size - 1, 3.5));
     return 0;
 }
