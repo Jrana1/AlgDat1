@@ -57,7 +57,7 @@ int linear_search_recursive(float *a, int start, int end, float key)
     }
     return linear_search_recursive(a, start + 1, end, key);
 }
-int binary_search_recursive(float *a, int lo, int hi, float key)
+int binary_search_recursive(float *a, int lo, int hi, int key, int count)
 {
 
     int mid = (lo + hi) / 2;
@@ -71,11 +71,11 @@ int binary_search_recursive(float *a, int lo, int hi, float key)
     }
     else if (key > a[mid])
     {
-        binary_search_recursive(a, mid + 1, hi, key);
+        binary_search_recursive(a, mid + 1, hi, key, count + 1);
     }
     else
     {
-        binary_search_recursive(a, lo, mid - 1, key);
+        binary_search_recursive(a, lo, mid - 1, key, count + 1);
     }
 }
 
@@ -145,12 +145,17 @@ int ternary_search_recursive(float *a, int lo, int hi, float key)
 }
 int main()
 {
-    float a[] = {1.5, 1.7, 2.3, 2.6, 3.3, 3.5, 3.9};
+    // float a[] = {1.5, 1.7, 2.3, 2.6, 3.3, 3.5, 3.9};
+    int a[] = {1, 4, 6, 7, 8, 13, 15, 16, 18, 23, 32, 33, 38, 45};
     int size = sizeof(a) / sizeof(a[0]);
     // int ans = binary_search(a, size, 1.8);
     // int index = binary_search_recursive(a, 0, size, 1.7);
     // printf("%d\n", index);
     // printf("%d\n", binary_search_recursive(a, 0, size, 1.6));
-    printf("%f found at %d index\n", -3.9, ternary_search_recursive(a, 0, size - 1, -3.9));
+    static int count = 0;
+    binary_search_recursive(a, 0, size - 1, 23, count);
+    printf("%d\n", count);
+
+    // printf("%f found at %d index\n", -3.9, ternary_search_recursive(a, 0, size - 1, -3.9));
     return 0;
 }
