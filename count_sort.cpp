@@ -19,7 +19,6 @@ public:
     {
         this->size = 10;
         this->array = new int[size];
-        this->result = new int[size];
         srand(time(NULL));
         for (int i = 0; i < size; i++)
         {
