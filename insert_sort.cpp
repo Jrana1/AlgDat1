@@ -2,6 +2,7 @@
 using namespace std;
 #include <string>
 #include <stdlib.h>
+#include <stdio.h>
 // bool search_ite(int *A, int key, int size)
 // {
 
@@ -23,7 +24,8 @@ using namespace std;
 // }
 void insert_sort(int *A, int size)
 {
-  for (int i = 1; i < size; i++)
+  int c = 0;
+  for (int i = 1; c++, i < size; i++)
   {
     int key = A[i];
     int j = i - 1;
@@ -39,16 +41,25 @@ void insert_sort(int *A, int size)
       A[j + 1] = key;
     }
   }
+  cout << c << endl;
+}
+void fun()
+{
+  int i;
+  for (i = 0, printf("init\n"); printf("condition check\n"), i < 3; i++, printf("increament\n"))
+  {
+    cout << "in schleife" << endl;
+  }
 }
 int main()
 {
-  int A[4] = {3, 2, 9, 1};
+  int A[2] = {3, 2};
   int size = sizeof(A) / sizeof(A[0]);
-  insert_sort(A, size);
-  for (auto x : A)
-  {
-    cout << x << " ";
-  }
-
+  // insert_sort(A, size);
+  // for (auto x : A)
+  // {
+  //   cout << x << " ";
+  // }
+  fun();
   return 0;
 }
