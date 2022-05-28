@@ -64,13 +64,49 @@ public:
             quick_sort(pivot + 1, end);
         }
     }
+    int hoare_partition(int st, int end)
+    {
+        int x = this->array[st];
+        int i = st - 1;
+        int j = end + 1;
+        while (i < j)
+        {
+
+            do
+            {
+                i++;
+            } while (!(this->array[i] >= x));
+            do
+            {
+                j--;
+            } while (!(this->array[j] <= x));
+            if (i < j)
+            {
+                mySwap(&this->array[i], &this->array[j]);
+            }
+        }
+        return j;
+    }
+
+    void quick_sort_mit_hoare_partition(int st, int end)
+    {
+
+        if ((end - st) >= 1)
+        {
+            int pivot = hoare_partition(st, end);
+
+            quick_sort_mit_hoare_partition(st, pivot);
+            quick_sort_mit_hoare_partition(pivot + 1, end);
+        }
+    }
 };
 
 int main()
 {
     Array<int> a1(10);
     a1.display();
-    a1.quick_sort(0, 9);
+    // a1.quick_sort(0, 9);
+    a1.quick_sort_mit_hoare_partition(0, 10);
     a1.display();
     return 0;
 }
