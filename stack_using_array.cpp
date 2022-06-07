@@ -30,6 +30,11 @@ public:
     }
     T pop()
     {
+        if (this->isEmpty())
+        {
+            cout << "Stack is Empty!!" << endl;
+            exit(0);
+        }
         T x = this->Array[this->top--];
         return x;
     }
@@ -45,14 +50,22 @@ public:
     {
         delete[] Array;
     }
+    bool isFull()
+    {
+        if (this->top == this->size)
+        {
+            return true;
+        }
+        return false;
+    }
 };
 
 int main()
 {
 
-    int arr[] = {3, 9, 1, 3, 2, 8, 6, 4, 0, 12};
+    int arr[] = {3, 9, 1, 3, 2, 8, 6, 4, 2};
     Stack<int> s1;
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 9; i++)
     {
         s1.push(arr[i]);
     }
