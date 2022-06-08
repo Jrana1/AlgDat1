@@ -1,21 +1,22 @@
 #include <iostream>
 using namespace std;
+template <class T>
 class Queue
 {
 private:
     int front;
     int rear;
     int size;
-    int *Array;
+    T *Array;
 
 public:
     Queue()
     {
         this->front = this->rear = -1;
         this->size = 10;
-        this->Array = new int[this->size];
+        this->Array = new T[this->size];
     }
-    void enqueue(int val)
+    void enqueue(T val)
     {
         if (this->rear == this->size - 1)
         {
@@ -45,7 +46,7 @@ public:
     {
         return this->rear == (this->size - 1) ? true : false;
     }
-    int dequeue()
+    T dequeue()
     {
         return this->Array[++this->front];
     }
@@ -53,8 +54,8 @@ public:
 
 int main()
 {
-    int A[] = {2, 3, 5, 8};
-    Queue q;
+    float A[] = {2.3, 3.1, 5.0, 8.9};
+    Queue<float> q;
     for (int i = 0; i < 4; i++)
     {
         q.enqueue(A[i]);
