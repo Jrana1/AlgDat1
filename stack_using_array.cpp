@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+#include <stack>
 template <class T>
 class Stack
 {
@@ -11,7 +12,7 @@ private:
 public:
     Stack()
     {
-        this->size = 8;
+        this->size = 34;
         this->top = -1;
         this->Array = new T[this->size];
     };
@@ -62,19 +63,6 @@ public:
 
 int main()
 {
-
-    int arr[] = {3, 9, 1, 3, 2, 8, 6, 4, 2};
-    Stack<int> s1;
-    for (int i = 0; i < 9; i++)
-    {
-        s1.push(arr[i]);
-    }
-    s1.display();
-    while (!s1.isEmpty())
-    {
-        cout << s1.pop() << " ";
-    }
-    cout << "\n";
 
     return 0;
 }
